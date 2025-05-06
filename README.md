@@ -35,12 +35,12 @@ pip install tensorflow pandas scikit-learn matplotlib
 Additionally, ensure you have an internet connection to download the dataset and helper functions.
 Usage
 
-Clone this repository:
+*Clone this repository:*
 git clone https://github.com/your-username/introduction-to-nlp.git
 cd introduction-to-nlp
 
 
-Run the script:
+### Run the script:
 python introduction_to_nlp.py
 
 
@@ -64,28 +64,28 @@ tensorboard --logdir model_logs
 Then, navigate to http://localhost:6006 in your browser.
 
 
-Models
+### Models
 The script implements and compares the following models:
 
-Model 0: Baseline (Naive Bayes with TF-IDF)
+#### Model 0: Baseline (Naive Bayes with TF-IDF)
 
 Uses scikit-learn's TfidfVectorizer and MultinomialNB.
 Converts text to TF-IDF features and applies a Naive Bayes classifier.
 
 
-Model 1: Simple Dense Model
+#### Model 1: Simple Dense Model
 
 A neural network with a TextVectorization layer, an Embedding layer, a GlobalAveragePooling1D layer, and a Dense output layer.
 Uses TensorFlow's Functional API.
 
 
-Model 2: LSTM (Long Short-Term Memory)
+#### Model 2: LSTM (Long Short-Term Memory)
 
 Incorporates an LSTM layer after the embedding layer for sequence modeling.
 Suitable for capturing long-term dependencies in text.
 
 
-Model 3: GRU (Gated Recurrent Unit)
+#### Model 3: GRU (Gated Recurrent Unit)
 
 Uses a GRU layer instead of LSTM, which has fewer parameters but similar capabilities.
 
@@ -95,7 +95,7 @@ Each model is trained for 5 epochs, and performance is evaluated on a validation
 Results
 The script evaluates models using accuracy, precision, recall, and F1-score. Sample results (as computed in the script) are summarized below:
 
-Model 0 (Baseline):
+#### Model 0 (Baseline):
 
 Accuracy: ~79.27%
 Precision: ~79.39%
@@ -103,7 +103,7 @@ Recall: ~79.27%
 F1-Score: ~79.15%
 
 
-Model 1 (Dense):
+#### Model 1 (Dense):
 
 Accuracy: ~76.51%
 Precision: ~76.86%
@@ -111,7 +111,7 @@ Recall: ~76.51%
 F1-Score: ~76.23%
 
 
-Model 2 (LSTM):
+#### Model 2 (LSTM):
 
 Accuracy: ~75.62%
 Precision: ~75.62%
@@ -119,7 +119,7 @@ Recall: ~75.62%
 F1-Score: ~75.62%
 
 
-Model 3 (GRU):
+#### Model 3 (GRU):
 
 Accuracy: ~76.25%
 Precision: ~76.25%
@@ -128,7 +128,8 @@ F1-Score: ~76.25%
 
 
 
-Observation: The baseline Naive Bayes model outperforms the deepPrince of Persia deep learning models, likely due to the simplicity of the dataset and the effectiveness of TF-IDF features for this task.
+## Observation:
+The baseline Naive Bayes model outperforms the deepPrince of Persia deep learning models, likely due to the simplicity of the dataset and the effectiveness of TF-IDF features for this task.
 Embedding Visualization
 The script generates files (vectors.tsv and metadata.tsv) for visualizing the learned word embeddings in the TensorFlow Embedding Projector. This allows you to explore semantic relationships between words (e.g., similar words clustering together).
 To visualize:
@@ -145,5 +146,5 @@ Commit your changes (git commit -m "Add your feature").
 Push to the branch (git push origin feature/your-feature).
 Open a pull request.
 
-**License**
+### License
 This project is licensed under the MIT License. See the LICENSE file for details.
