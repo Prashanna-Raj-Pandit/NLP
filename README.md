@@ -1,8 +1,8 @@
-Introduction to Natural Language Processing (NLP)
+## Introduction to Natural Language Processing (NLP)
 This repository contains a Python script (introduction_to_nlp.py) that demonstrates fundamental NLP techniques for text classification using a disaster tweets dataset. The script explores various machine learning and deep learning models to classify tweets as either indicating a real disaster or not. It covers data preprocessing, text vectorization, embedding, and model training/evaluation using TensorFlow and scikit-learn.
 Table of Contents
 
-Project Overview
+### Project Overview
 Dataset
 Installation
 Usage
@@ -12,16 +12,16 @@ Embedding Visualization
 Contributing
 License
 
-Project Overview
+### Project Overview
 The goal of this project is to build and compare multiple models for classifying tweets as disaster-related or non-disaster-related. The script includes:
 
-Data preprocessing and visualization using pandas.
+###Data preprocessing and visualization using pandas.
 Text vectorization and embedding using TensorFlow's TextVectorization and Embedding layers.
 Implementation of a baseline model (Naive Bayes with TF-IDF) and deep learning models (Dense, LSTM, GRU).
 Model evaluation using accuracy, precision, recall, and F1-score.
 Visualization of learned word embeddings using the TensorFlow Embedding Projector.
 
-Dataset
+### Dataset
 The dataset used is the NLP Getting Started dataset, which includes:
 
 train.csv: Training data with tweet texts and target labels (1 for disaster, 0 for non-disaster).
@@ -145,5 +145,5 @@ Commit your changes (git commit -m "Add your feature").
 Push to the branch (git push origin feature/your-feature).
 Open a pull request.
 
-License
+**License**
 This project is licensed under the MIT License. See the LICENSE file for details.
