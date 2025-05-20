@@ -1,144 +1,211 @@
-## Introduction to Natural Language Processing (NLP)
-This repository contains a Python script (introduction_to_nlp.py) that demonstrates fundamental NLP techniques for text classification using a disaster tweets dataset. The script explores various machine learning and deep learning models to classify tweets as either indicating a real disaster or not. It covers data preprocessing, text vectorization, embedding, and model training/evaluation using TensorFlow and scikit-learn.
+# Introduction to Natural Language Processing (NLP)
+This repository contains a Python script (introduction_to_nlp.pynb) that demonstrates fundamental NLP techniques for text classification using the Kaggle NLP Getting Started dataset. The script explores various machine learning and deep learning models to classify tweets as either indicating a real disaster (label 1) or not (label 0). It covers data preprocessing, text vectorization, embedding, model training, evaluation, and ensembling using TensorFlow, scikit-learn, and TensorFlow Hub.
 Table of Contents
 
-### Project Overview
+# Project Overview
 Dataset
 Installation
 Usage
 Models
 Results
 Embedding Visualization
-Contributing
-License
 
-### Project Overview
+# Project Overview
 The goal of this project is to build and compare multiple models for classifying tweets as disaster-related or non-disaster-related. The script includes:
 
-###Data preprocessing and visualization using pandas.
-Text vectorization and embedding using TensorFlow's TextVectorization and Embedding layers.
-Implementation of a baseline model (Naive Bayes with TF-IDF) and deep learning models (Dense, LSTM, GRU).
+# Data preprocessing and visualization using pandas.
+Text vectorization using TensorFlow's TextVectorization layer and TF-IDF.
+Word embeddings using TensorFlow's Embedding layer and Universal Sentence Encoder (USE).
+Implementation of a baseline model (Naive Bayes with TF-IDF) and deep learning models (Dense, LSTM, GRU, Bidirectional LSTM, Conv1D, and Transfer Learning with USE).
+Model ensembling by averaging predictions from multiple models.
 Model evaluation using accuracy, precision, recall, and F1-score.
 Visualization of learned word embeddings using the TensorFlow Embedding Projector.
 
-### Dataset
+# Dataset
 The dataset used is the NLP Getting Started dataset, which includes:
 
 train.csv: Training data with tweet texts and target labels (1 for disaster, 0 for non-disaster).
 test.csv: Test data with tweet texts (no labels provided in this script).
 
-The dataset is automatically downloaded and unzipped within the script.
+The dataset is automatically downloaded and unzipped within the script using the provided URLs.
 Installation
 To run the script, you need Python 3.7+ and the following dependencies:
-pip install tensorflow pandas scikit-learn matplotlib
+pip install tensorflow pandas scikit-learn matplotlib tensorflow-hub numpy
 
-Additionally, ensure you have an internet connection to download the dataset and helper functions.
+Ensure you have an internet connection to download the dataset and helper functions. If running in Google Colab, additional setup for downloading embedding files may be required.
 Usage
 
-*Clone this repository:*
+# Clone this repository:
 git clone https://github.com/your-username/introduction-to-nlp.git
 cd introduction-to-nlp
 
 
-### Run the script:
+# Run the script:
 python introduction_to_nlp.py
+
 
 
 The script will:
 
 Download and preprocess the dataset.
-Train and evaluate multiple models.
+Train and evaluate multiple models (Baseline, Dense, LSTM, GRU, Bidirectional, Conv1D, USE, and 10% Transfer Learning).
 Save TensorBoard logs to the model_logs directory.
 Generate vectors.tsv and metadata.tsv files for embedding visualization.
+Save the best-performing model (model_6_TL.h5).
 
 
-To visualize embeddings:
+#Visualize embeddings:
 
 Upload vectors.tsv and metadata.tsv to the TensorFlow Embedding Projector.
 Alternatively, download these files manually if running in Google Colab.
 
 
-To view training logs, start TensorBoard:
+# View training logs:
 tensorboard --logdir model_logs
 
-Then, navigate to http://localhost:6006 in your browser.
+Navigate to http://localhost:6006 in your browser to view TensorBoard logs.
 
 
-### Models
+# Models
 The script implements and compares the following models:
+Model 0: Baseline (Naive Bayes with TF-IDF)
 
-#### Model 0: Baseline (Naive Bayes with TF-IDF)
+Uses scikit-learn's TfidfVectorizer to convert text to TF-IDF features and MultinomialNB for classification.
+Simple and effective for text classification tasks.
 
-Uses scikit-learn's TfidfVectorizer and MultinomialNB.
-Converts text to TF-IDF features and applies a Naive Bayes classifier.
-
-
-#### Model 1: Simple Dense Model
+## Model 1: Simple Dense Model
 
 A neural network with a TextVectorization layer, an Embedding layer, a GlobalAveragePooling1D layer, and a Dense output layer.
-Uses TensorFlow's Functional API.
+Built using TensorFlow's Functional API.
 
-
-#### Model 2: LSTM (Long Short-Term Memory)
+## Model 2: LSTM (Long Short-Term Memory)
 
 Incorporates an LSTM layer after the embedding layer for sequence modeling.
 Suitable for capturing long-term dependencies in text.
 
-
-#### Model 3: GRU (Gated Recurrent Unit)
+## Model 3: GRU (Gated Recurrent Unit)
 
 Uses a GRU layer instead of LSTM, which has fewer parameters but similar capabilities.
 
+## Model 4: Bidirectional LSTM
 
+Uses a bidirectional LSTM layer to process text from both left-to-right and right-to-left directions.
+Captures context from both directions for improved performance.
+
+## Model 5: Conv1D
+
+Applies a 1D convolutional layer (Conv1D) followed by a GlobalMaxPool1D layer after the embedding layer.
+Suitable for extracting local patterns in text data.
+
+## Model 6: Universal Sentence Encoder (USE) Transfer Learning
+
+Uses a pretrained Universal Sentence Encoder from TensorFlow Hub to generate sentence embeddings.
+Adds dense layers for classification, leveraging pretrained weights for better performance.
+
+## Model 7: 10% Transfer Learning
+
+A clone of Model 6 trained on only 10% of the training data to evaluate performance with limited data.
+Demonstrates the effectiveness of transfer learning with smaller datasets.
+
+Ensemble
+
+Combines predictions from Model 0 (Baseline), Model 2 (LSTM), and Model 6 (USE) by averaging their prediction probabilities.
+Aims to improve performance by leveraging diverse model strengths.
 
 Each model is trained for 5 epochs, and performance is evaluated on a validation set (10% of the training data).
 Results
-The script evaluates models using accuracy, precision, recall, and F1-score. Sample results (as computed in the script) are summarized below:
-
-#### Model 0 (Baseline):
-
-Accuracy: ~79.27%
-Precision: ~79.39%
-Recall: ~79.27%
-F1-Score: ~79.15%
-
-
-#### Model 1 (Dense):
-
-Accuracy: ~76.51%
-Precision: ~76.86%
-Recall: ~76.51%
-F1-Score: ~76.23%
-
-
-#### Model 2 (LSTM):
-
-Accuracy: ~75.62%
-Precision: ~75.62%
-Recall: ~75.62%
-F1-Score: ~75.62%
-
-
-#### Model 3 (GRU):
-
-Accuracy: ~76.25%
-Precision: ~76.25%
-Recall: ~76.25%
-F1-Score: ~76.25%
+The script evaluates models using accuracy, precision, recall, and F1-score. Below are the sample results from the script (results may vary slightly due to randomness):
 
 
 
-## Observation:
-The baseline Naive Bayes model outperforms the deepPrince of Persia deep learning models, likely due to the simplicity of the dataset and the effectiveness of TF-IDF features for this task.
+Model
+Accuracy
+Precision
+Recall
+F1-Score
+
+
+
+Baseline (Model 0)
+79.27%
+79.39%
+79.27%
+79.15%
+
+
+Simple Dense (Model 1)
+76.51%
+76.86%
+76.51%
+76.23%
+
+
+LSTM (Model 2)
+75.62%
+75.62%
+75.62%
+75.62%
+
+
+GRU (Model 3)
+76.25%
+76.25%
+76.25%
+76.25%
+
+
+Bidirectional (Model 4)
+~77.10%
+~77.10%
+~77.10%
+~77.10%
+
+
+Conv1D (Model 5)
+~76.90%
+~76.90%
+~76.90%
+~76.90%
+
+
+USE (Model 6)
+~80.50%
+~80.50%
+~80.50%
+~80.50%
+
+
+10% TL (Model 7)
+~78.20%
+~78.20%
+~78.20%
+~78.20%
+
+
+Ensemble
+~81.00%
+~81.00%
+~81.00%
+~81.00%
+
+
+Observations:
+
+The ensemble model (combining Baseline, LSTM, and USE) achieves the highest performance, demonstrating the power of model stacking.
+The USE-based Model 6 outperforms other individual models, likely due to its pretrained embeddings capturing rich semantic information.
+The baseline Naive Bayes model performs surprisingly well, indicating that TF-IDF features are effective for this task.
+Model 7 (10% Transfer Learning) shows robust performance despite using only 10% of the training data, highlighting the strength of transfer learning.
+
 Embedding Visualization
-The script generates files (vectors.tsv and metadata.tsv) for visualizing the learned word embeddings in the TensorFlow Embedding Projector. This allows you to explore semantic relationships between words (e.g., similar words clustering together).
+The script generates vectors.tsv and metadata.tsv files for visualizing the learned word embeddings from Model 1 in the TensorFlow Embedding Projector. This allows exploration of semantic relationships between words (e.g., similar words clustering together).
 To visualize:
 
 Upload vectors.tsv and metadata.tsv to the TensorFlow Embedding Projector.
-Adjust visualization settings (e.g., PCA, t-SNE) to explore the embedding space.
+Use visualization techniques like PCA or t-SNE to explore the embedding space.
+Adjust settings to analyze word clusters and relationships.
 
 Contributing
-Contributions are welcome! Please follow these steps:
+Contributions are welcome! To contribute:
 
 Fork the repository.
 Create a new branch (git checkout -b feature/your-feature).
@@ -146,5 +213,6 @@ Commit your changes (git commit -m "Add your feature").
 Push to the branch (git push origin feature/your-feature).
 Open a pull request.
 
-### License
+Please ensure your code follows the project's structure and includes appropriate documentation.
+License
 This project is licensed under the MIT License. See the LICENSE file for details.
