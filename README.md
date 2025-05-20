@@ -135,6 +135,9 @@ Upload vectors.tsv and metadata.tsv to the TensorFlow Embedding Projector.
 Use visualization techniques like PCA or t-SNE to explore the embedding space.
 Adjust settings to analyze word clusters and relationships.
 
+<img width="711" alt="image" src="https://github.com/user-attachments/assets/403f4bae-b66b-4441-87be-361f27730ed6" />
+<img width="729" alt="image" src="https://github.com/user-attachments/assets/7fabfea3-8d5c-4de9-a03f-129027974e1f" />
+
 
 
 Contributing
