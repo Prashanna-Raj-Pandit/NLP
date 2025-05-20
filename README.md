@@ -73,36 +73,36 @@ Model 0: Baseline (Naive Bayes with TF-IDF)
 Uses scikit-learn's TfidfVectorizer to convert text to TF-IDF features and MultinomialNB for classification.
 Simple and effective for text classification tasks.
 
-## Model 1: Simple Dense Model
+### Model 1: Simple Dense Model
 
 A neural network with a TextVectorization layer, an Embedding layer, a GlobalAveragePooling1D layer, and a Dense output layer.
 Built using TensorFlow's Functional API.
 
-## Model 2: LSTM (Long Short-Term Memory)
+### Model 2: LSTM (Long Short-Term Memory)
 
 Incorporates an LSTM layer after the embedding layer for sequence modeling.
 Suitable for capturing long-term dependencies in text.
 
-## Model 3: GRU (Gated Recurrent Unit)
+### Model 3: GRU (Gated Recurrent Unit)
 
 Uses a GRU layer instead of LSTM, which has fewer parameters but similar capabilities.
 
-## Model 4: Bidirectional LSTM
+### Model 4: Bidirectional LSTM
 
 Uses a bidirectional LSTM layer to process text from both left-to-right and right-to-left directions.
 Captures context from both directions for improved performance.
 
-## Model 5: Conv1D
+### Model 5: Conv1D
 
 Applies a 1D convolutional layer (Conv1D) followed by a GlobalMaxPool1D layer after the embedding layer.
 Suitable for extracting local patterns in text data.
 
-## Model 6: Universal Sentence Encoder (USE) Transfer Learning
+### Model 6: Universal Sentence Encoder (USE) Transfer Learning
 
 Uses a pretrained Universal Sentence Encoder from TensorFlow Hub to generate sentence embeddings.
 Adds dense layers for classification, leveraging pretrained weights for better performance.
 
-## Model 7: 10% Transfer Learning
+### Model 7: 10% Transfer Learning
 
 A clone of Model 6 trained on only 10% of the training data to evaluate performance with limited data.
 Demonstrates the effectiveness of transfer learning with smaller datasets.
@@ -117,79 +117,12 @@ Results
 The script evaluates models using accuracy, precision, recall, and F1-score. Below are the sample results from the script (results may vary slightly due to randomness):
 
 
+![image](https://github.com/user-attachments/assets/5ed0782e-fa1a-4915-a0b3-a9366e5a4567)
 
-Model
-Accuracy
-Precision
-Recall
-F1-Score
-
-
-
-Baseline (Model 0)
-79.27%
-79.39%
-79.27%
-79.15%
-
-
-Simple Dense (Model 1)
-76.51%
-76.86%
-76.51%
-76.23%
-
-
-LSTM (Model 2)
-75.62%
-75.62%
-75.62%
-75.62%
-
-
-GRU (Model 3)
-76.25%
-76.25%
-76.25%
-76.25%
-
-
-Bidirectional (Model 4)
-~77.10%
-~77.10%
-~77.10%
-~77.10%
-
-
-Conv1D (Model 5)
-~76.90%
-~76.90%
-~76.90%
-~76.90%
-
-
-USE (Model 6)
-~80.50%
-~80.50%
-~80.50%
-~80.50%
-
-
-10% TL (Model 7)
-~78.20%
-~78.20%
-~78.20%
-~78.20%
-
-
-Ensemble
-~81.00%
-~81.00%
-~81.00%
-~81.00%
-
+![image](https://github.com/user-attachments/assets/98f38dc8-18ea-4593-851d-7520d6f898da)
 
 Observations:
+
 
 The ensemble model (combining Baseline, LSTM, and USE) achieves the highest performance, demonstrating the power of model stacking.
 The USE-based Model 6 outperforms other individual models, likely due to its pretrained embeddings capturing rich semantic information.
