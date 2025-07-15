@@ -1,4 +1,3 @@
-# Introduction to Natural Language Processing (NLP)
 <img width="1024" height="445" alt="image" src="https://github.com/user-attachments/assets/bf70900c-4dd5-4a23-bf4e-ed56bf57c734" />
 
 This repository contains a Python script (introduction_to_nlp.ipynb) that demonstrates fundamental NLP techniques for text classification using the Kaggle NLP Getting Started dataset. The script explores various machine learning and deep learning models to classify tweets as either indicating a real disaster (label 1) or not (label 0). It covers data preprocessing, text vectorization, embedding, model training, evaluation, and ensembling using TensorFlow, scikit-learn, and TensorFlow Hub.
